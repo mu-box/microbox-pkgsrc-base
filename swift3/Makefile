@@ -12,7 +12,7 @@ HOMEPAGE=	http://swift.org
 COMMENT=	Swift 3.x language package
 LICENSE=	apache-2.0
 
-LLDB_BINS=	lldb-4.0.0 lldb-argdumper lldb-mi-4.0.0 lldb-server-4.0.0 
+LLDB_BINS=	lldb-4.0.0 lldb-argdumper lldb-mi-4.0.0 lldb-server-4.0.0
 SWIFT_BINS=	repl_swift swift-build swift-package swift-test
 
 LIBS_A=		swift/linux/libswiftRemoteMirror.so swift/linux/libswiftSwiftOnoneSupport.so swift/linux/libswiftGlibc.so swift/linux/libswiftCore.so

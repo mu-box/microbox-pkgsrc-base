@@ -14,7 +14,7 @@ COMMENT=	Headless WebKit with JavaScript API
 LICENSE=	modified-bsd
 
 do-build:
-	patchelf --set-rpath ${PREFIX}/lib ${WRKSRC}/bin/phantomjs 
+	patchelf --set-rpath ${PREFIX}/lib ${WRKSRC}/bin/phantomjs
 
 do-install:
 	mkdir -p ${DESTDIR}${PREFIX}

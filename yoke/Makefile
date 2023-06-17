@@ -6,10 +6,10 @@ DISTNAME=		yoke-${VERSION}
 VERSION?=		0.0.4
 # PKGREVISION?=		1
 CATEGORIES=		pagoda
-MASTER_SITES=		github.com/pagodabox/yoke
+MASTER_SITES=		github.com/mu-box/yoke
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		github.com/pagodabox/yoke
+HOMEPAGE=		github.com/mu-box/yoke
 COMMENT=		Yoke is a postgres redundancy/auto-failover solution
 LICENSE=       		MIT
 
@@ -18,11 +18,11 @@ WRKSRC=			${WRKDIR}/yoke
 USE_LANGUAGES=		# none
 
 GIT_REPOSITORIES=	yoke
-GIT_REPO.yoke=		git@github.com:nanopack/yoke.git
+GIT_REPO.yoke=		git@github.com:mu-box/yoke.git
 GIT_TAG.yoke=		${VERSION}
 
 GO_DOMAIN=		github.com
-GO_USER=		pagodabox
+GO_USER=		microbox
 GO_PROJECT=		yoke
 
 .PHONY: build-yokeadm install-yokeadm

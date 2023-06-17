@@ -15,7 +15,7 @@ LICENSE=	apache-2.0
 
 BIN_FILES=	prometheus promtool
 ETC_FILES=	prometheus.yml
-LIB_FILES=	console_libraries consoles	
+LIB_FILES=	console_libraries consoles
 
 NO_BUILD=	yes
 

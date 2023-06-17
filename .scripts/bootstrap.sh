@@ -7,7 +7,7 @@ detect_platform() {
     echo "SmartOS"
   elif [ $(uname | grep 'Linux') ]; then
     echo "Linux"
-  fi    
+  fi
 }
 
 project='base'
@@ -146,7 +146,7 @@ sudo bash -c "/bin/cat > /data/etc/pkgin/repositories.conf" <<END
 # Simply add repositories URIs one below the other
 #
 # WARNING: order matters, duplicates will not be added, if two
-# repositories hold the same package, it will be fetched from 
+# repositories hold the same package, it will be fetched from
 # the first one listed in this file.
 #
 # This file format supports the following macros:
@@ -165,8 +165,8 @@ sudo bash -c "/bin/cat > /data/etc/pkgin/repositories.conf" <<END
 #
 # file:///usr/pkgsrc/packages/All
 
-# Nanobox public repository
-http://d7zr21m3kwv6q.cloudfront.net/nanobox/${project}/${platform}
+# Microbox public repository
+http://s3.amazonaws.com/tools.microbox.cloud/microbox/${project}/${platform}
 END
 
 # 10) symlink openssl certs
@@ -180,9 +180,9 @@ sudo tar -czf /var/tmp/bootstrap.tar.gz -C / data
 curl \
   -k \
   -X POST \
-  -H "Key: ${NANOBOX_SECRET}" \
+  -H "Key: ${MICROBOX_SECRET}" \
   --data-binary \@/var/tmp/bootstrap.tar.gz \
-  https://pkgsrc.nanobox.io/${NANOBOX_USER}/${project}/${platform}/bootstrap.tar.gz
+  https://pkgsrc.microbox.cloud/${MICROBOX_USER}/${project}/${platform}/bootstrap.tar.gz
 
 # 12) build/install/publish extra packages
 for i in ${extra_packages[@]}; do

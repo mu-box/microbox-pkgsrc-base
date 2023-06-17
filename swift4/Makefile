@@ -13,7 +13,7 @@ HOMEPAGE=	http://swift.org
 COMMENT=	Swift 4.0 language package
 LICENSE=	apache-2.0
 
-LLDB_BINS=	lldb-4.0.0 lldb-argdumper lldb-mi-4.0.0 lldb-server-4.0.0 
+LLDB_BINS=	lldb-4.0.0 lldb-argdumper lldb-mi-4.0.0 lldb-server-4.0.0
 SWIFT_BINS=	repl_swift swift-build swift-package swift-run swift-test
 
 LIBS_A=		libsourcekitdInProc.so

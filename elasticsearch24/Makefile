@@ -31,7 +31,7 @@ BINS=		elasticsearch elasticsearch.in.sh plugin
 
 BUILD_DEFS+=	ES_USER ES_GROUP ES_DBDIR ES_LOGDIR ES_PIDDIR ES_TMPDIR
 
-ES_USER?=	gonano
+ES_USER?=	gomicro
 ES_GROUP?=	${ES_USER}
 ES_LIBDIR?=	${PREFIX}/lib/elasticsearch
 ES_DBDIR?=	${VARBASE}/db/elasticsearch

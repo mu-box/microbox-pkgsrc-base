@@ -5,7 +5,7 @@
 DISTNAME=		ctime-${VERSION}
 VERSION?=		0.1.0
 # PKGREVISION?=		1
-CATEGORIES=		nanobox
+CATEGORIES=		microbox
 MASTER_SITES=		github.com/glinton/ctime
 
 MAINTAINER=		pkgsrc-users@NetBSD.org

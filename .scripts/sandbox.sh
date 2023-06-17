@@ -24,7 +24,7 @@ detect_platform() {
     echo "SmartOS"
   elif [ $(uname | grep 'Linux') ]; then
     echo "Linux"
-  fi    
+  fi
 }
 
 create_chroot() {
@@ -72,7 +72,7 @@ create_chroot() {
   # fetch bootstrap
   if [ ! -f /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz ]; then
     wget \
-      http://pkgsrc.nanobox.io/nanobox/${project}/${platform}/bootstrap.tar.gz \
+      https://pkgsrc.microbox.cloud/microbox/${project}/${platform}/bootstrap.tar.gz \
       -O /content/packages/pkgsrc/${project}/${platform}/bootstrap.tar.gz
   fi
 

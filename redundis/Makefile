@@ -6,10 +6,10 @@ DISTNAME=		redundis-${VERSION}
 VERSION?=		0.0.0
 # PKGREVISION?=		1
 CATEGORIES=		pagoda
-MASTER_SITES=		github.com/nanopack/redundis
+MASTER_SITES=		github.com/mu-box/redundis
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		github.com/nanopack/redundis
+HOMEPAGE=		github.com/mu-box/redundis
 COMMENT=		Redundis is a redis redundancy/auto-failover solution
 LICENSE=       		MIT
 
@@ -18,7 +18,7 @@ USE_TOOLS+=		gmake
 WRKSRC=			${WRKDIR}/redundis
 
 GIT_REPOSITORIES=	redundis
-GIT_REPO.redundis=	git@github.com:nanopack/redundis.git
+GIT_REPO.redundis=	git@github.com:mu-box/redundis.git
 # GIT_TAG=		${VERSION}
 GIT_BRANCH.redundis=	master
 

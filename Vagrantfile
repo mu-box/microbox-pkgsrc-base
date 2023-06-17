@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 # determine vagrant provider
-ENV['VAGRANT_DEFAULT_PROVIDER'] = ENV['NANOBOX_BUILD_VAGRANT_PROVIDER'] || 'virtualbox'
+ENV['VAGRANT_DEFAULT_PROVIDER'] = ENV['MICROBOX_BUILD_VAGRANT_PROVIDER'] || 'virtualbox'
 
 # determine pkgsrc-lite directory
 [
-  '../../nanobox-pkgsrc-lite',
+  '../../microbox-pkgsrc-lite',
   '../../pkgsrc-lite',
   '../.pkgsrc-lite'
 ].each do |candidate|
@@ -19,12 +19,12 @@ end
 # if pkgsrc-lite does not exist, let's fetch it now
 if not $pkgsrc
   $pkgsrc = File.expand_path('../.pkgsrc-lite', __FILE__)
-  clone_url = 'https://github.com/pagodabox/nanobox-pkgsrc-lite.git'
+  clone_url = 'https://github.com/mu-box/microbox-pkgsrc-lite.git'
 
   stdout_sync = STDOUT.sync
   stderr_sync = STDERR.sync
   STDOUT.sync = STDERR.sync = true
-  puts "pagodabox/nanobox-pkgsrc-lite is required to build packages, cloning into .pkgsrc-lite..."
+  puts "mu-box/microbox-pkgsrc-lite is required to build packages, cloning into .pkgsrc-lite..."
 
   IO.popen "git clone #{clone_url} #{$pkgsrc}" do |out|
     until out.eof?
@@ -47,7 +47,7 @@ end
 Vagrant.configure('2') do |config|
 
   config.vm.box = 'trusty64'
-  config.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
+  config.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_virtualbox.box'
 
   config.vm.provider 'virtualbox' do |v|
     v.memory = 8192
@@ -59,7 +59,7 @@ Vagrant.configure('2') do |config|
     v.vmx["numvcpus"] = "4"
     v.gui = false
     override.vm.box = "trusty64_vmware"
-    override.vm.box_url = 'https://github.com/pagodabox/vagrant-packer-templates/releases/download/v0.2.0/trusty64_vmware.box'
+    override.vm.box_url = 'https://github.com/mu-box/vagrant-packer-templates/releases/download/v0.2.0/trusty64_vmware.box'
   end
 
   config.vm.provider "docker" do |v, override|
@@ -67,16 +67,16 @@ Vagrant.configure('2') do |config|
     v.create_args = ['--privileged']
     v.expose = [22]
     v.has_ssh = true
-    
+
     override.vm.box = nil
     override.vm.box_url = nil
   end
 
   config.vm.network "private_network", type: "dhcp"
 
-  nanobox_user = ENV["NANOBOX_USER"] || 'nanobox'
-  nanobox_project = ENV["NANOBOX_BASE_PROJECT"] || 'base'
-  nanobox_secret = ENV["NANOBOX_BASE_SECRET"]
+  microbox_user = ENV["MICROBOX_USER"] || 'microbox'
+  microbox_project = ENV["MICROBOX_BASE_PROJECT"] || 'base'
+  microbox_secret = ENV["MICROBOX_BASE_SECRET"]
 
   # cache
   config.vm.synced_folder "./.distfiles", "/content/distfiles"# , type: "nfs"
@@ -108,9 +108,9 @@ Vagrant.configure('2') do |config|
     fi
     echo # Vagrant environment variables > /etc/profile.d/vagrant.sh
     echo export PATH=/data/sbin:/data/bin:/data/gcc49/bin:/data/gnu/bin:$PATH >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_USER=#{nanobox_user} >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_PROJECT=#{nanobox_project} >> /etc/profile.d/vagrant.sh
-    echo export NANOBOX_SECRET=#{nanobox_secret} >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_USER=#{microbox_user} >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_PROJECT=#{microbox_project} >> /etc/profile.d/vagrant.sh
+    echo export MICROBOX_SECRET=#{microbox_secret} >> /etc/profile.d/vagrant.sh
     echo umask 022 >> /etc/profile.d/vagrant.sh
     chmod +x /etc/profile.d/vagrant.sh
   SCRIPT
@@ -136,7 +136,7 @@ Vagrant.configure('2') do |config|
     if [ ! -d /data ]; then
       curl \
         -s \
-        http://pkgsrc.nanobox.io/nanobox/base/${platform}/bootstrap.tar.gz \
+        https://pkgsrc.microbox.cloud/microbox/base/${platform}/bootstrap.tar.gz \
           | tar \
               -xz \
               -f - \

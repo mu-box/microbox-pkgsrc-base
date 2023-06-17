@@ -3,7 +3,7 @@
 FROM ubuntu
 
 # Create directories
-RUN mkdir -p /var/log/gonano
+RUN mkdir -p /var/log/gomicro
 
 # Install basic things
 RUN apt-get update -qq && \
@@ -11,13 +11,13 @@ RUN apt-get update -qq && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -L -o /var/tmp/nanoinit_0.0.1_amd64.deb https://github.com/nanopack/nanoinit/releases/download/v0.0.1/nanoinit_0.0.1_amd64.deb && \
-    dpkg -i /var/tmp/nanoinit_0.0.1_amd64.deb
+RUN curl -L -o /var/tmp/microinit_0.0.1_amd64.deb https://github.com/mu-box/microinit/releases/download/v0.0.1/microinit_0.0.1_amd64.deb && \
+    dpkg -i /var/tmp/microinit_0.0.1_amd64.deb
 
-RUN mkdir -p /etc/nanoinit.d && \
-    echo "#!/bin/bash" > /etc/nanoinit.d/sshd && \
-    echo "/usr/sbin/sshd" >> /etc/nanoinit.d/sshd && \
-    chmod 755 /etc/nanoinit.d/sshd && \
+RUN mkdir -p /etc/microinit.d && \
+    echo "#!/bin/bash" > /etc/microinit.d/sshd && \
+    echo "/usr/sbin/sshd" >> /etc/microinit.d/sshd && \
+    chmod 755 /etc/microinit.d/sshd && \
     mkdir -p /var/run/sshd
 
 # Add vagrant user
@@ -35,4 +35,4 @@ RUN echo 'vagrant ALL=NOPASSWD: ALL' >> /etc/sudoers.d/vagrant
 RUN mkdir /chroot && chown vagrant:vagrant /chroot
 
 # Run runit automatically
-CMD [ "/bin/nanoinit", "/bin/sleep", "365d" ]
+CMD [ "/bin/microinit", "/bin/sleep", "365d" ]
